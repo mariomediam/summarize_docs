@@ -128,8 +128,7 @@ class HomeView(APIView):
 
 class SumarizeView(CreateAPIView):  
     def post(self, request, format=None):
-        try:
-            print("ENTRO")
+        try:            
             file_name = "doc_request.pdf"
             location = f"{PATH_DOCS}/"
 
@@ -156,8 +155,16 @@ class SumarizeView(CreateAPIView):
                     docs = get_docs_from_word(file_path)
 
                 result = summarize_docs(docs)
+
+                name_office_destiny =  result.get("oficina_destino", "")
+                # modificar el nombre de la oficina de destino quitando los acentos y poner en minusculas
+                name_office_destiny_format = name_office_destiny.lower().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").upper()
+
+                print(dependencias.get(name_office_destiny_format, ""))
+
+                result["cod_oficina_destino"] = dependencias.get(name_office_destiny_format, 0)
                 return JsonResponse({"message": '', "content": result})
-                # return JsonResponse(result, safe=False)
+                
             
         except Exception as e:
             print(e)
