@@ -23,7 +23,7 @@ VALID_EXTENSIONS = ["pdf", "docx", "doc"]
 PROMPT_SYSTEM_TEMPLATE = '''Eres un asistente que solo habla en JSON. No genere salida que no esté en JSON correctamente formateada.
 Se te va a proporcionar un documento en formato PDF o Word y debes retornar en formato JSON los siguientes campos:
 
-- summarize: <str> Un resumen conciso del documento omitiendo saludos y despedidas.
+- summarize: <str> Un resumen conciso del documento, omitiendo saludos y despedidas. Máximo 500 caracteres. 
 - fecha_doc: <date> La fecha del documento en formato dd/mm/yyyy.
 - tipo_doc: <str> El tipo de documento.
 - number_doc: <str> El número del documento.
@@ -163,7 +163,12 @@ class SumarizeView(CreateAPIView):
                 print(dependencias.get(name_office_destiny_format, ""))
 
                 result["cod_oficina_destino"] = dependencias.get(name_office_destiny_format, 0)
-                return JsonResponse({"message": '', "content": result})
+                print("************************* result *************************")
+                print(result)
+                # return JsonResponse({"message": '', "content": result})
+                response = JsonResponse({"message": '', "content": result})
+                response['Content-Type'] = 'application/json; charset=utf-8'
+                return response
                 
             
         except Exception as e:
