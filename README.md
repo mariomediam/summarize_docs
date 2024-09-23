@@ -2,6 +2,10 @@
 
 Esta API utiliza el modelo de lenguaje de OpenAI, Django y LangChain para procesar documentos Word (informes, formatos, etc.) y extraer información clave como el número del documento, año, oficina de destino y un resumen, devolviéndolo en formato JSON. Este proyecto ha sido implementado en un sistema legado desarrollado con **Visual FoxPro 8.0**.
 
+https://github.com/user-attachments/assets/27e33368-cae8-4ffb-ac0b-bb254a2ce6d2
+
+https://github.com/user-attachments/assets/2f62eabe-ad9a-4b48-99ee-2802719984cb
+
 ## Características
 
 - **Carga de documentos Word**: Sube documentos Word (.docx) para su procesamiento.
